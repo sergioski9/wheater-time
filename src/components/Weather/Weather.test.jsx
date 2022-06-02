@@ -6,7 +6,7 @@ import '@testing-library/jest-dom/extend-expect'
 
 test('Weather render', async () => {
   // AAA Arrange Act Assert
-  const { findByRole } = render(<Weather temperature={10} />)
+  const { findByRole } = render(<Weather temperature={10} state='sunny' />)
 
   // eslint-disable-next-line testing-library/prefer-screen-queries
   const temp = await findByRole('heading')
