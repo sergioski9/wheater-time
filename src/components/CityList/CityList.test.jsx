@@ -27,6 +27,7 @@ test('CityList click on item', async () => {
 
   const { findAllByRole } = render(<CityList cities={cities} onClickCity={fnClickOnItem} />)
 
+  // eslint-disable-next-line testing-library/prefer-screen-queries
   const items = await findAllByRole('listitem')
 
   fireEvent.click(items[0])
