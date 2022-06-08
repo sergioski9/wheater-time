@@ -6,7 +6,7 @@ const CityInfo = ({ city, country }) => {
   return (
     <>
       <Typography variant={'h4'} display={'inline'}>{city}, </Typography>
-      <Typography variant={'h4'} display={'inline'}>{country}</Typography>
+      <Typography variant={'h5'} display={'inline'}>{country}</Typography>
     </>
   )
 }
