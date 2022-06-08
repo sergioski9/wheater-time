@@ -5,9 +5,30 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgba(200, 200, 200, 0.1);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.full-screen {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.highlight {
+  height: 170px;
+  color: rgb(34, 53, 116);
+  background-color: rgba(255, 255, 255, 0.1);
+  transition-duration: 1800ms;
+}
+
+.highlight:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  transition-duration: 1800ms;
 }
