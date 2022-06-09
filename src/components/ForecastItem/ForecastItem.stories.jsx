@@ -7,4 +7,4 @@ export default {
   component: ForecastItem
 }
 
-export const ForecastItemExample = () => (<ForecastItem weekDay='lunes' hour={10} state='sunny' temperature={19} ></ForecastItem>)
+export const ForecastItemExample = () => (<ForecastItem weekDay='lunes' hour={10} state='clear' temperature={19} ></ForecastItem>)
