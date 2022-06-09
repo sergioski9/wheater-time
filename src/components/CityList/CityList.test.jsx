@@ -5,20 +5,18 @@ import '@testing-library/jest-dom/extend-expect'
 
 
 const cities = [
-  { city: 'Santa Cruz', country: 'Bolivia' },
-  { city: 'Buenos Aires', country: 'Argentina' },
-  { city: 'Brasil', country: 'Sao Paulo' },
-  { city: 'Ciudad de Mexico', country: 'Mexico' }
+  { city: 'Santa Cruz', country: 'Bolivia', countryCode: 'BO' },
+  { city: 'Buenos Aires', country: 'Argentina', countryCode: 'AR' },
+  { city: 'Brasil', country: 'Sao Paulo', countryCode: 'BR' },
+  { city: 'Ciudad de Mexico', country: 'Mexico', countryCode: 'MX' }
 ]
 
 test('CityList render', async () => {
-
-
-  const { findAllByRole } = render(<CityList cities={cities} />)
+  const { findAllByRole } = render(<CityList cities={cities} onClickCity={()=>{}} />)
 
   // eslint-disable-next-line testing-library/prefer-screen-queries
   const items = await findAllByRole('button')
-  // Assert
+
   expect(items).toHaveLength(4)
 })
 

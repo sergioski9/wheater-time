@@ -8,10 +8,10 @@ export default {
 }
 
 const cities = [
-  { city: 'Santa Cruz', country: 'Bolivia' },
-  { city: 'Buenos Aires', country: 'Argentina' },
-  { city: 'Brasil', country: 'Sao Paulo' },
-  { city: 'Ciudad de Mexico', country: 'Mexico' }
+  { city: 'Santa Cruz', country: 'Bolivia', countryCode: 'BO' },
+  { city: 'Buenos Aires', country: 'Argentina', countryCode: 'AR' },
+  { city: 'Brasil', country: 'Sao Paulo', countryCode: 'BR' },
+  { city: 'Ciudad de Mexico', country: 'Mexico', countryCode: 'MX' }
 ]
 
 export const renderCityList = () => <CityList cities={cities} onClickCity={action('Click in city')} />
