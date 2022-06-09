@@ -5,10 +5,10 @@ import AppFrame from './../components/AppFrame'
 import CityList from './../components/CityList'
 
 const cities = [
-  { city: 'Santa Cruz', country: 'Bolivia' },
-  { city: 'Buenos Aires', country: 'Argentina' },
-  { city: 'Brasil', country: 'Sao Paulo' },
-  { city: 'Ciudad de Mexico', country: 'Mexico' }
+  { city: 'Santa Cruz', country: 'Bolivia', countryCode: 'BO' },
+  { city: 'Buenos Aires', country: 'Argentina', countryCode: 'AR' },
+  { city: 'Brasil', country: 'Sao Paulo', countryCode: 'BR' },
+  { city: 'Ciudad de Mexico', country: 'Mexico', countryCode: 'MX' }
 ]
 
 const MainPage = () => {
