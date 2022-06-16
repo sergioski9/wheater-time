@@ -1,68 +1,44 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useDebugValue } from 'react'
 import axios from 'axios'
-import moment from 'moment'
-import 'moment/locale/es'
+import getForecastItemList from './../utils/transform/getForecastItemList'
 import { useParams } from 'react-router-dom'
 import { getForecastUrl } from './../utils/urls'
-import { toCelsius } from './../utils/utils'
+import getChartData from './../utils/transform/getChartData'
+import { getCityCode } from './../utils/utils'
 
-const useCityPage = () => {
-  const [chartData, setChartData] = useState(null)
-  const [forecastItemList, setForecastItemList] = useState(null)
-
+const useCityPage = (allChartData, allForecastItemList, onSetChartData, onSetForecastItemList) => {
   const { city, countryCode } = useParams()
+
+  useDebugValue('CityPage debugValue hook')
 
   useEffect(() => {
     const getForecast = async () => {
       const url = getForecastUrl({ city, countryCode })
+      const cityCode = getCityCode(city, countryCode)
 
       try {
         const { data } = await axios.get(url)
 
-        const daysAhead = [0, 1, 2, 3, 4, 5]
-        const days = daysAhead.map(d => moment().add(d, 'd'))
-        const dataAux = days.map(day => {
+        const dataAux = getChartData(data)
 
-          const tempObjArray = data.list.filter(item => {
-            const dayOfYear = moment.unix(item.dt).dayOfYear()
-            return dayOfYear === day.dayOfYear()
-          })
+        onSetChartData({ [cityCode]: dataAux })
 
-          const temps = tempObjArray.map(item => item.main.temp)
+        const forecastItemListAux = getForecastItemList(data)
 
-          return ({
-            dayHour: day.format('ddd'),
-            min: toCelsius(Math.min(...temps)),
-            max: toCelsius(Math.max(...temps)),
-            hasTemps: (temps.length > 0 ? true : false)
-          })
-        }).filter(item => item.hasTemps)
-
-        setChartData(dataAux)
-
-        const interval = [4, 8, 12, 16, 20, 24]
-
-        const forecastItemListAux = data.list
-          .filter((item, index) => interval.includes(index))
-          .map(item => {
-            return ({
-              hour: moment.unix(item.dt).hour(),
-              weekDay: moment.unix(item.dt).format('dddd'),
-              state: item.weather[0].main.toLowerCase(),
-              temperature: toCelsius(item.main.temp)
-            })
-          })
-
-        setForecastItemList(forecastItemListAux)
+        onSetForecastItemList({ [cityCode]: forecastItemListAux })
       } catch (error) {
         console.log(error)
       }
     }
 
-    getForecast()
-  }, [city, countryCode])
+    const cityCode = getCityCode(city, countryCode)
 
-  return { chartData, city, forecastItemList }
+    if (allChartData && allForecastItemList && !allChartData[cityCode] && !allForecastItemList[cityCode]) {
+      getForecast()
+    }
+  }, [city, countryCode, allChartData, allForecastItemList, onSetChartData, onSetForecastItemList])
+
+  return { city, countryCode }
 }
 
 export default useCityPage
