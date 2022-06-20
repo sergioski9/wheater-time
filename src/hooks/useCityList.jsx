@@ -14,15 +14,12 @@ const useCityList = (cities, allWeather, actions) => {
       try {
         const propName = getCityCode(city, countryCode)
 
-        // onSetAllWeather({ [propName]: {} })
         actions({ type: 'SET_ALL_WEATHER', payload: { [propName]: {} } })
 
         const response = await axios.get(url)
 
         const allWeatherAux = getAllWeather(response, city, countryCode)
 
-        // setAllWeather(allWeather => ({ ...allWeather, ...allWeatherAux }))
-        // onSetAllWeather({ ...allWeatherAux })
         actions({ type: 'SET_ALL_WEATHER', payload: allWeatherAux })
       } catch (error) {
         if (error.response) {

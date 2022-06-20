@@ -21,12 +21,10 @@ const useCityPage = (allChartData, allForecastItemList, actions) => {
 
         const dataAux = getChartData(data)
 
-        // onSetChartData({ [cityCode]: dataAux })
         actions({ type: 'SET_CHART_DATA', payload: { [cityCode]: dataAux } })
 
         const forecastItemListAux = getForecastItemList(data)
 
-        // onSetForecastItemList({ [cityCode]: forecastItemListAux })
         actions({ type: 'SET_FORECAST_ITEM_LIST', payload: { [cityCode]: forecastItemListAux } })
       } catch (error) {
         console.log(error)
