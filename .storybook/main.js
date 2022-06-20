@@ -5,10 +5,11 @@ module.exports = {
   ],
   "addons": [
     "@storybook/addon-links",
+    "@storybook/addon-controls",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
-    "@storybook/preset-create-react-app",
-    "@storybook/addon-viewport/register"
+    "@storybook/addon-viewport/register",
+    "@storybook/preset-create-react-app"
   ],
   "framework": "@storybook/react",
   "core": {
